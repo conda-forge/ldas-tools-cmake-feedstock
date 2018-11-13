@@ -1,6 +1,6 @@
 {% set name = "ldas-tools-cmake" %}
-{% set version = "1.0.3" %}
-{% set sha256 = "304d844b7ef165ccb1b1e90ff7ee7110bd53e17e64b3b392a530c1e89a2f80ed" %}
+{% set version = "1.0.4" %}
+{% set sha256 = "0dbbc4f680bb1b4586974386c9dae366af72d15bb2a516c02aa3a0d569d7f7ff" %}
 
 package:
   name: {{ name }}
@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1001
+  number: 1000
 
 requirements:
   build:
