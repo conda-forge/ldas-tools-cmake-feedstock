@@ -7,7 +7,6 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
@@ -16,10 +15,7 @@ build:
 
 requirements:
   build:
-    - cmake >=3.6
-    - pkg-config  # [not win]
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - cmake >=3.2
 
 test:
   commands:
@@ -33,7 +29,7 @@ about:
   home: https://git.ligo.org/ldastools/LDAS_Tools
   license: GPLv2+
   license_family: GPL
-  license_file: '{{ environ["RECIPE_DIR"] }}/COPYING'
+  license_file: COPYING
   summary: CMake functions used by LDAS Tools
 
 extra:
