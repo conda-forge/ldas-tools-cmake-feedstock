@@ -2,8 +2,13 @@
 mkdir build
 cd build
 
+:: force cmake to use nmake
+set "CMAKE_GENERATOR=NMake Makefiles"
+
 :: configure
-cmake .. -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%"
+cmake .. ^
+	-G "%CMAKE_GENERATOR%" ^
+	-DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%"
 if errorlevel 1 exit 1
 
 :: build
