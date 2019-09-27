@@ -1,13 +1,12 @@
 {% set name = "ldas-tools-cmake" %}
-{% set version = "1.0.7" %}
-{% set sha256 = "2e6f77e744aa4a0ab7ab32b08693e9bcc4ef022e352f28953c4678df4b3c9eba" %}
+{% set version = "1.1.0" %}
+{% set sha256 = "748998a3bcd5c89ae7c23950f7503dc8e0233bca40adf15a6b3fe836f03e96ce" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
 
@@ -16,10 +15,7 @@ build:
 
 requirements:
   build:
-    - cmake >=3.6
-    - pkg-config  # [not win]
-    - {{ compiler('c') }}
-    - {{ compiler('cxx') }}
+    - cmake >=3.2
 
 test:
   commands:
@@ -33,7 +29,7 @@ about:
   home: https://git.ligo.org/ldastools/LDAS_Tools
   license: GPLv2+
   license_family: GPL
-  license_file: '{{ environ["RECIPE_DIR"] }}/COPYING'
+  license_file: COPYING
   summary: CMake functions used by LDAS Tools
 
 extra:
