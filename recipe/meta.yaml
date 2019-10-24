@@ -1,14 +1,14 @@
 {% set name = "ldas-tools-cmake" %}
-{% set version = "1.1.0" %}
-{% set sha256 = "748998a3bcd5c89ae7c23950f7503dc8e0233bca40adf15a6b3fe836f03e96ce" %}
+{% set version = "1.1.1" %}
+{% set sha256 = "1b4a2989bf087b948a82f54edd311dc5f99261d01258b284b7ac8daaff740499" %}
 
 package:
-  name: {{ name }}
-  version: {{ version }}
+  name: "{{ name }}"
+  version: "{{ version }}"
 
 source:
-  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  url: "http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz"
+  sha256: "{{ sha256 }}"
 
 build:
   number: 0
@@ -18,19 +18,21 @@ requirements:
     - cmake >=3.2
 
 test:
+  requires:
+    - pkg-config  # [unix]
   commands:
-    - exit $(test -f ${PREFIX}/share/ldas-tools/cmake/Modules/LDASToolsInstallDirs.cmake)  # [not win]
-    - exit $(test -f ${PREFIX}/share/ldas-tools/cmake/Modules/Autotools/ArchiveX/cx_ldas_pkg_check.cmake)  # [not win]
-    - exit $(test -f ${PREFIX}/lib/pkgconfig/ldastoolscmake.pc)  # [not win]
+    - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/LDASToolsInstallDirs.cmake  # [unix]
+    - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/Autotools/ArchiveX/cx_ldas_pkg_check.cmake  # [unix]
+    - test "$(pkg-config --modversion ldastoolscmake)" == "{{ version }}"  # [unix]
     - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\LDASToolsInstallDirs.cmake exit 1  # [win]
     - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\Autotools\ArchiveX\cx_ldas_pkg_check.cmake exit 1  # [win]
 
 about:
-  home: https://git.ligo.org/ldastools/LDAS_Tools
-  license: GPLv2+
-  license_family: GPL
-  license_file: COPYING
-  summary: CMake functions used by LDAS Tools
+  home: "https://git.ligo.org/ldastools/LDAS_Tools"
+  license: "GPL-2.0-or-later"
+  license_family: "GPL"
+  license_file: "COPYING"
+  summary: "CMake functions used by LDAS Tools"
 
 extra:
   recipe-maintainers:
