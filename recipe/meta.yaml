@@ -18,10 +18,12 @@ requirements:
     - cmake >=3.2
 
 test:
+  requires:
+    - pkg-config  # [unix]
   commands:
     - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/LDASToolsInstallDirs.cmake  # [unix]
     - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/Autotools/ArchiveX/cx_ldas_pkg_check.cmake  # [unix]
-    - test -f ${PREFIX}/lib/pkgconfig/ldastoolscmake.pc  # [unix]
+    - test "$(pkg-config --modversion ldastoolscmake)" == "{{ version }}"  # [unix]
     - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\LDASToolsInstallDirs.cmake exit 1  # [win]
     - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\Autotools\ArchiveX\cx_ldas_pkg_check.cmake exit 1  # [win]
 
