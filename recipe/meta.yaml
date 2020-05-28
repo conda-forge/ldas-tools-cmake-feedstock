@@ -1,14 +1,14 @@
 {% set name = "ldas-tools-cmake" %}
-{% set version = "1.1.1" %}
-{% set sha256 = "1b4a2989bf087b948a82f54edd311dc5f99261d01258b284b7ac8daaff740499" %}
+{% set version = "1.2.0" %}
+{% set sha256 = "8d8186609a9ad28acbd31a837f1dbc077d50171210d18cc1ab252fae20b1dbf6" %}
 
 package:
-  name: "{{ name }}"
-  version: "{{ version }}"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  url: "http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz"
-  sha256: "{{ sha256 }}"
+  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
   number: 0
@@ -28,11 +28,11 @@ test:
     - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\Autotools\ArchiveX\cx_ldas_pkg_check.cmake exit 1  # [win]
 
 about:
-  home: "https://git.ligo.org/ldastools/LDAS_Tools"
-  license: "GPL-2.0-or-later"
-  license_family: "GPL"
-  license_file: "COPYING"
-  summary: "CMake functions used by LDAS Tools"
+  home: https://git.ligo.org/ldastools/LDAS_Tools
+  license: GPL-2.0-or-later
+  license_family: GPL
+  license_file: COPYING
+  summary: CMake functions used by LDAS Tools
 
 extra:
   recipe-maintainers:
