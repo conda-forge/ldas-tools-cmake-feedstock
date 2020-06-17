@@ -1,38 +1,50 @@
 {% set name = "ldas-tools-cmake" %}
-{% set version = "1.1.1" %}
-{% set sha256 = "1b4a2989bf087b948a82f54edd311dc5f99261d01258b284b7ac8daaff740499" %}
+{% set version = "1.2.1" %}
+{% set sha256 = "bc4b447717753f7bde8fbc17b8f05f2f3f7f21ad4764c0530cb42bdf42c0dde3" %}
 
 package:
-  name: "{{ name }}"
-  version: "{{ version }}"
+  name: {{ name }}
+  version: {{ version }}
 
 source:
-  url: "http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz"
-  sha256: "{{ sha256 }}"
+  url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
 
 build:
+  ignore_run_exports:
+    # we don't actually use the compiler
+    - libgcc-ng  # [linux]
+    - libstdcxx-ng  # [linux]
+    - vc  # [win]
+    - vs2015_runtime  # [win]
   number: 0
 
 requirements:
   build:
+    # we need a compiler present, osx has one by default
+    - {{ compiler('c') }}  # [not osx]
+    - {{ compiler('cxx') }}  # [not osx]
     - cmake >=3.2
+    - pkg-config
+  host:
+    - igwn-cmake >=1.2.1
+  run:
+    - igwn-cmake >=1.2.1
 
 test:
   requires:
     - pkg-config  # [unix]
   commands:
-    - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/LDASToolsInstallDirs.cmake  # [unix]
-    - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/Autotools/ArchiveX/cx_ldas_pkg_check.cmake  # [unix]
+    - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/LDASToolsCMakeConfig.cmake  # [unix]
+    - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\LDASToolsCMakeConfig.cmake exit 1  # [win]
     - test "$(pkg-config --modversion ldastoolscmake)" == "{{ version }}"  # [unix]
-    - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\LDASToolsInstallDirs.cmake exit 1  # [win]
-    - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\Autotools\ArchiveX\cx_ldas_pkg_check.cmake exit 1  # [win]
 
 about:
-  home: "https://git.ligo.org/ldastools/LDAS_Tools"
-  license: "GPL-2.0-or-later"
-  license_family: "GPL"
-  license_file: "COPYING"
-  summary: "CMake functions used by LDAS Tools"
+  home: https://git.ligo.org/ldastools/LDAS_Tools
+  license: GPL-2.0-or-later
+  license_family: GPL
+  license_file: COPYING
+  summary: CMake functions used by LDAS Tools
 
 extra:
   recipe-maintainers:
