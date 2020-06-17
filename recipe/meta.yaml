@@ -11,23 +11,30 @@ source:
   sha256: {{ sha256 }}
 
 build:
+  ignore_run_exports:
+    # we don't actually use the compiler
+    - vc  # [win]
+    - vs2015_runtime  # [win]
   number: 0
 
 requirements:
   build:
+    # we need a compiler present, only windows doesn't have one by default
+    - {{ compiler('c') }}  # [win]
     - cmake >=3.2
+    - pkg-config
   host:
+    - igwn-cmake >=1.2.1
+  run:
     - igwn-cmake >=1.2.1
 
 test:
   requires:
     - pkg-config  # [unix]
   commands:
-    - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/LDASToolsInstallDirs.cmake  # [unix]
-    - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/Autotools/ArchiveX/cx_ldas_pkg_check.cmake  # [unix]
+    - test -f ${PREFIX}/share/ldas-tools/cmake/Modules/LDASToolsCMakeConfig.cmake  # [unix]
+    - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\LDASToolsCMakeConfig.cmake exit 1  # [win]
     - test "$(pkg-config --modversion ldastoolscmake)" == "{{ version }}"  # [unix]
-    - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\LDASToolsInstallDirs.cmake exit 1  # [win]
-    - if not exist %LIBRARY_PREFIX%\share\ldas-tools\cmake\Modules\Autotools\ArchiveX\cx_ldas_pkg_check.cmake exit 1  # [win]
 
 about:
   home: https://git.ligo.org/ldastools/LDAS_Tools
