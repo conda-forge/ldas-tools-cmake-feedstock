@@ -4,13 +4,15 @@ mkdir -p build
 pushd build
 
 # configure
-cmake .. -DCMAKE_INSTALL_PREFIX=${PREFIX}
+cmake ${CMAKE_ARGS} .. -DCMAKE_INSTALL_PREFIX=${PREFIX}
 
 # build
 cmake --build .
 
 # test
+if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
 ctest -V
+fi
 
 # install
 cmake --build . --target install
