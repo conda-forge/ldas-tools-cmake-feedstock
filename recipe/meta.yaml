@@ -1,6 +1,6 @@
 {% set name = "ldas-tools-cmake" %}
-{% set version = "1.2.2" %}
-{% set sha256 = "88dbcfb2c21e2e621d78979026bd1292bdb3c692c9d43956bffbfd23bdc2970f" %}
+{% set version = "1.2.3" %}
+{% set sha256 = "23aa4d18e9ba17e71d868955949af363267ea0630331892326c169ac0b363580" %}
 
 package:
   name: {{ name }}
