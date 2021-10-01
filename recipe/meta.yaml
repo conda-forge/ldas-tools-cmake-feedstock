@@ -29,9 +29,9 @@ requirements:
     - cmake >=3.2
     - pkg-config
   host:
-    - igwn-cmake >={{ igwn_cmake_macros_version }}
+    - igwn-cmake-macros >={{ igwn_cmake_macros_version }}
   run:
-    - igwn-cmake >={{ igwn_cmake_macros_version }}
+    - igwn-cmake-macros >={{ igwn_cmake_macros_version }}
 
 test:
   requires:
