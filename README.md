@@ -1,13 +1,19 @@
 About ldas-tools-cmake
 ======================
 
-Home: https://git.ligo.org/ldastools/LDAS_Tools
+Home: https://wiki.ligo.org/Computing/LDASTools
 
 Package license: GPL-2.0-or-later
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ldas-tools-cmake-feedstock/blob/master/LICENSE.txt)
 
 Summary: CMake functions used by LDAS Tools
+
+Development: https://git.ligo.org/ldastools/LDAS_Tools
+
+This collection of cmake macros was developed as part of
+the LDAS Tools Suite to have consistency across all of the packages
+
 
 Current build status
 ====================
