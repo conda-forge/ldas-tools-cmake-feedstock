@@ -27,6 +27,7 @@ requirements:
     - {{ compiler('c') }}  # [not osx]
     - {{ compiler('cxx') }}  # [not osx]
     - cmake >=3.2
+    - make  # [unix]
     - pkg-config
   host:
     - igwn-cmake-macros >={{ igwn_cmake_macros_version }}
