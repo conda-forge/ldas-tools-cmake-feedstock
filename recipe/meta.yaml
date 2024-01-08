@@ -13,6 +13,8 @@ source:
   sha256: 7dd0db9b228fe4c8978b1ce70ac67644b1d8429d5fca0f5e206e3df0a7a0cdb2
 
 build:
+  error_overdepending: true
+  error_overlinking: true
   ignore_run_exports:
     # we don't actually use the compiler, but need it to configure cmake
     - libgcc-ng  # [linux]
