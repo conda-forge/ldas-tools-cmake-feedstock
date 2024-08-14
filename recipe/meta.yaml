@@ -17,10 +17,8 @@ build:
   error_overlinking: true
   ignore_run_exports:
     # we don't actually use the compiler, but need it to configure cmake
-    - libgcc-ng  # [linux]
-    - libstdcxx-ng  # [linux]
-    - vc  # [win]
-    - vs2015_runtime  # [win]
+    - {{ stdlib('c') }}
+    - {{ compiler('cxx') }}
   number: 1
 
 requirements:
