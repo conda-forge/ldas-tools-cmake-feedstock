@@ -21,10 +21,11 @@ build:
     - libstdcxx-ng  # [linux]
     - vc  # [win]
     - vs2015_runtime  # [win]
-  number: 0
+  number: 1
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.2
