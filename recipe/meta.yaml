@@ -25,9 +25,8 @@ build:
 
 requirements:
   build:
-    # we need a compiler present, osx has one by default
-    - {{ compiler('c') }}  # [not osx]
-    - {{ compiler('cxx') }}  # [not osx]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - cmake >=3.2
     - make  # [unix]
     - pkg-config
