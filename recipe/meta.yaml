@@ -19,6 +19,7 @@ build:
     # we don't actually use the compiler, but need it to configure cmake
     - {{ stdlib('c') }}
     - {{ compiler('cxx') }}
+  noarch: generic
   number: 1
 
 requirements:
@@ -32,6 +33,8 @@ requirements:
   host:
     - igwn-cmake-macros >={{ igwn_cmake_macros_version }}
   run:
+    - __unix  # [unix]
+    - __win  # [win]
     - igwn-cmake-macros >={{ igwn_cmake_macros_version }}
 
 test:
