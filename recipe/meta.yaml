@@ -1,5 +1,5 @@
 {% set name = "ldas-tools-cmake" %}
-{% set version = "1.3.1" %}
+{% set version = "1.4.0" %}
 
 # dependency versions
 {% set igwn_cmake_macros_version = "1.6.0" %}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/{{ name }}-{{ version }}.tar.gz
-  sha256: 2edd9442c376484f53891dfde392d73bde225a312916072f79fa6c26d872c68b
+  sha256: 08949f3cd0137c421c2627e3508c4f5234e650e92eceb2c2b955968ba10a9fd6
 
 build:
   error_overdepending: true
