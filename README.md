@@ -14,7 +14,6 @@ Development: https://git.ligo.org/ldastools/LDAS_Tools
 This collection of cmake macros was developed as part of
 the LDAS Tools Suite to have consistency across all of the packages
 
-
 Current build status
 ====================
 
