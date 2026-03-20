@@ -1,21 +1,20 @@
-rem use local build folder
 mkdir build
 cd build
 
-rem configure
-cmake .. ^
-	-G "NMake Makefiles" ^
-	-DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%"
-if errorlevel 1 exit 1
+cmake ^
+  %CMAKE_ARGS% ^
+  -G "NMake Makefiles" ^
+  -DCMAKE_BUILD_TYPE:STRING=Release ^
+  -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 ^
+  "%SRC_DIR%"
+if %ERRORLEVEL% neq 0 exit 1
 
-rem build
-cmake --build .
-if errorlevel 1 exit 1
+cmake --build . --parallel "%CPU_COUNT%" --verbose
+if %ERRORLEVEL% neq 0 exit 1
 
-rem test
 ctest -V
-if errorlevel 1 exit 1
+if %ERRORLEVEL% neq 0 exit 1
 
-rem install
-cmake --build . --target install
-if errorlevel 1 exit 1
+cmake --build . --parallel "%CPU_COUNT%" --verbose --target install
+if %ERRORLEVEL% neq 0 exit 1

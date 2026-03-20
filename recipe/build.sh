@@ -4,7 +4,12 @@ mkdir -p build
 pushd build
 
 # configure
-cmake ${CMAKE_ARGS} .. -DCMAKE_INSTALL_PREFIX=${PREFIX}
+cmake \
+  ${SRC_DIR} \
+  ${CMAKE_ARGS} \
+  -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+;
 
 # build
 cmake --build .
