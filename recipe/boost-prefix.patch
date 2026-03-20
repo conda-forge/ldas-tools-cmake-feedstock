@@ -1,0 +1,23 @@
+diff --git a/ldastools_cmake/Modules/cx_boost_base.cmake b/ldastools_cmake/Modules/cx_boost_base.cmake
+index 1c02ac0b2..0e05fea09 100644
+--- a/ldastools_cmake/Modules/cx_boost_base.cmake
++++ b/ldastools_cmake/Modules/cx_boost_base.cmake
+@@ -95,9 +95,9 @@ function(cx_boost_base)
+     set(_build_env "generic")
+     if(DEFINED ENV{CONDA_PREFIX})
+         set(_build_env "conda")
+-        list(APPEND _boost_search_prefixes "$ENV{CONDA_PREFIX}")
++        list(APPEND _boost_search_prefixes "$ENV{PREFIX}")
+         if(ARG_VERBOSE)
+-            message(STATUS "cx_boost_base: Detected conda environment: $ENV{CONDA_PREFIX}")
++            message(STATUS "cx_boost_base: Detected conda environment: $ENV{PREFIX}")
+         endif()
+     elseif(EXISTS "/etc/redhat-release")
+         set(_build_env "redhat")
+@@ -305,4 +305,4 @@ function(cx_boost_base)
+         message(STATUS "  BOOST_LIBRARY_DIR: ${BOOST_LIBRARY_DIR}")
+     endif()
+     
+-endfunction()
+\ No newline at end of file
++endfunction()

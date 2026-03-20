@@ -13,6 +13,8 @@ package:
 source:
   url: http://software.ligo.org/lscsoft/source/${{ name }}-${{ version }}.tar.gz
   sha256: 08949f3cd0137c421c2627e3508c4f5234e650e92eceb2c2b955968ba10a9fd6
+  patches:
+    - boost-prefix.patch
 
 build:
   noarch: generic
@@ -29,6 +31,7 @@ requirements:
     - pkg-config
   host:
     - igwn-cmake-macros >=${{ igwn_cmake_macros_version }}
+    - libboost-devel
   run:
     - if: unix
       then: __unix
