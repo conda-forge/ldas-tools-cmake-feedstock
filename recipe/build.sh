@@ -1,18 +1,24 @@
 #!/bin/bash
 
+set -ex
+
 mkdir -p build
 pushd build
 
 # configure
-cmake ${CMAKE_ARGS} .. -DCMAKE_INSTALL_PREFIX=${PREFIX}
+cmake \
+  ${SRC_DIR} \
+  ${CMAKE_ARGS} \
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5 \
+;
 
 # build
-cmake --build .
+cmake --build . --parallel ${CPU_COUNT} --verbose
 
 # test
 if [[ "${CONDA_BUILD_CROSS_COMPILATION:-}" != "1" ]]; then
-ctest -V
+ctest --parallel ${CPU_COUNT} --verbose
 fi
 
 # install
-cmake --build . --target install
+cmake --build . --parallel ${CPU_COUNT} --verbose --target install
