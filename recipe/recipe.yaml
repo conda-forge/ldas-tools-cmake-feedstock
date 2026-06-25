@@ -4,7 +4,7 @@ context:
   name: ldas-tools-cmake
   version: "1.5.0"
   # dependency versions
-  igwn_cmake_macros_version: 1.10.0
+  igwn_cmake_macros_version: 1.11.0
 
 package:
   name: ${{ name|lower }}
