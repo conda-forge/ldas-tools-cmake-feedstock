@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ldas-tools-cmake
-  version: "1.4.2"
+  version: "1.5.0"
   # dependency versions
   igwn_cmake_macros_version: 1.10.0
 
@@ -12,7 +12,7 @@ package:
 
 source:
   url: http://software.ligo.org/lscsoft/source/${{ name }}-${{ version }}.tar.gz
-  sha256: 63429b9c76c6bf8989da114b02afadbcce04b42b2607666d0820a0a533af7c7b
+  sha256: 27687a4ae2c4d4425af2f9742270a2292c1021c5738fdab2dd1b4fe81a0491e3
   patches:
     - boost-prefix.patch
 
